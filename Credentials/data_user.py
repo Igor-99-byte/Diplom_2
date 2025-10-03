@@ -3,8 +3,15 @@ from helpers import GenerateDataUser
 generator = GenerateDataUser()
 
 class DataUser:
-    emailPasswordName = [
-        ((email := generator.generate_email()), (password := generator.generate_password()), (name := generator.generate_name())),
-        (email, password, name),
-        ('', 'witcher55', 'Gerald')
-    ]
+    def create_email(self):
+        email = generator.generate_email()
+        return email
+    
+    def create_password(self):
+        password = generator.generate_email()
+        return password
+    
+    def create_name(self):
+        name = generator.generate_email()
+        return name
+    
