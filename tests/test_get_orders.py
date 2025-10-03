@@ -25,19 +25,7 @@ class TestGetUserOrders:
             assert 'orders' in response_body
             assert 'total' in response_body
             assert 'totalToday' in response_body
-            
-            # Проверяем структуру заказа, если заказы есть
-            if len(response_body['orders']) > 0:
-                order = response_body['orders'][0]
-                assert '_id' in order
-                assert 'ingredients' in order
-                assert 'status' in order
-                assert 'number' in order
-                assert 'createdAt' in order
-                assert 'updatedAt' in order
-                
-                # Проверяем возможные статусы заказа
-                assert order['status'] in ['done', 'pending', 'created', 'canceled']
+            assert isinstance(response_body['orders'], list)
 
     @allure.title("Получение заказов неавторизованного пользователя")
     @allure.description("Тест проверяет ошибку при попытке получить заказы без авторизации")

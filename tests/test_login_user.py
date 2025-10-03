@@ -2,16 +2,14 @@ import allure
 import pytest
 import requests
 from Credentials.urls import UrlsSB
-
+from Credentials.data_user import test_users_data
 
 @allure.feature("Авторизация пользователя")
 class TestLoginUser:
     @allure.title("Тест авторизации пользователя")
     @allure.story("Проверка различных сценариев авторизации пользователя")
-    @pytest.mark.parametrize('email, password', [
-        ('qwerty13@mail.ru', '123456'),
-        ('falselogin', 'falsepassword')
-    ])
+    @pytest.mark.parametrize('email, password', test_users_data)
+    
     def test_login_user(self, email, password):
         payload = {
             "email": email,

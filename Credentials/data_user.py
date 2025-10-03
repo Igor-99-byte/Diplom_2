@@ -15,3 +15,12 @@ class DataUser:
         name = generator.generate_email()
         return name
     
+
+test_users_data = [
+        ('qwerty13@mail.ru', '123456'),
+        ('falselogin', 'falsepassword')
+    ]
+    
+
+
+    
