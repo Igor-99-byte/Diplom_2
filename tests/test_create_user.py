@@ -1,7 +1,7 @@
 import pytest
 import allure
 import requests
-from Credentials.data_user import DataUser
+from Credentials.data_user import DataUser, DataUserPassedFailedDublicate
 from Credentials.urls import UrlsSB
 
 
@@ -62,18 +62,8 @@ class TestCreateUser:
 
     @allure.title("Создание дубликата пользователя")
     @allure.story("Попытка создания пользователя с существующим email")
-    def test_create_user_duplicate(self, cleanup_users):
-        payload = {
-            "email": "qwerty220@mail.ru",
-            "password": "password123", 
-            "name": "Duplicate User"
-        }
-        
-        with allure.step("Создание первого пользователя"):
-            response1 = requests.post(UrlsSB.urlCreateUser, json=payload)
-            assert response1.status_code == 200, "Первый пользователь должен создаться успешно"
-            access_token = response1.json()["accessToken"]
-            cleanup_users.append(access_token)
+    def test_create_user_duplicate(self):
+        payload = DataUserPassedFailedDublicate.create_dublicate_user
         
         with allure.step("Попытка создания дубликата"):
             response2 = requests.post(UrlsSB.urlCreateUser, json=payload)

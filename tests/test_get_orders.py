@@ -76,7 +76,6 @@ class TestGetUserOrders:
         response_body = response.json()
         
         with allure.step("Проверка сортировки заказов (старые заказы должны быть первыми)"):
-            if len(response_body['orders']) > 1:
-                orders = response_body['orders']
-                for i in range(len(orders) - 1):
-                    assert orders[i]['updatedAt'] <= orders[i + 1]['updatedAt']
+            orders = response_body['orders']
+            for i in range(len(orders) - 1):
+                assert orders[i]['updatedAt'] <= orders[i + 1]['updatedAt']

@@ -7,11 +7,10 @@ class TestRefactorUser:
     @allure.title("Обновление данных пользователя с авторизацией")
     @allure.description("Тест проверяет успешное обновление данных пользователя при наличии авторизации")
     def test_update_user(self, login_user):
-        # Первый тест - с авторизацией
         token = login_user()
         payload = {
-            "name": 'qwerty14',
-            "email": 'qwerty14@mail.ru'
+            "name": 'qwerty_new',
+            "email": 'new@mail.ru'
         }
         headers = {
             "Authorization": token
@@ -22,13 +21,10 @@ class TestRefactorUser:
         
         response_body = response.json()
         
-        if response.status_code == 200:
-            with allure.step("Проверка успешного ответа"):
-                assert response_body['success'] == True
-                assert response_body['user']['name'] == 'qwerty14'
-                assert response_body['user']['email'] == 'qwerty14@mail.ru'
-        else:
-            assert False, f"Expected 200, but got {response.status_code}. Response: {response_body}"
+        with allure.step("Проверка успешного ответа"):
+            assert response_body['success'] == True
+            assert response_body['user']['name'] == 'qwerty_new'
+            assert response_body['user']['email'] == 'new@mail.ru'
     
     @allure.title("Обновление данных пользователя без авторизации")
     @allure.description("Тест проверяет ошибку при попытке обновить данные пользователя без авторизации")

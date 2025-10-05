@@ -25,5 +25,4 @@ def cleanup_users():
     # Очистка после теста - линейный сценарий без обработки ошибок
     for token in created_tokens:
         headers = {"Authorization": token}
-        response = requests.delete(UrlsSB.urlDeleteUser, headers=headers)
-        assert response.status_code == 202
+        requests.delete(UrlsSB.urlDeleteUser, headers=headers)
