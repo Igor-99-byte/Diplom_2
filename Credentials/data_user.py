@@ -16,7 +16,7 @@ class DataUser:
         return name
 
 
-class DataUserPassedFailedDublicate:
+class DataUserDublicate:
     create_dublicate_user = {
                 "email": "qwerty130@mail.ru",
                 "password": "123456", 
